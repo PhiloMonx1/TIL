@@ -10,7 +10,7 @@
 #### 하드 드라이브 (HDD)
 자기 디스트, 하드 디스크 등 다양하게 불린다.
 
-![HDD.jpg](..%2F..%2F..%2F..%2F..%2F..%2FAppData%2FLocal%2FTemp%2FHDD.jpg) [이미지 출처](https://m.blog.naver.com/crabbyreview/221323837424)
+![HDD.jpg](https://mblogthumb-phinf.pstatic.net/MjAxODA3MjFfMjE0/MDAxNTMyMDk5NDM3NzEy.nf7OLU16rrLiuUuZe1J_ImD-uH9NqUmQ6PrsFaNgBJUg.DR5lkxLARbNxh1Ox-tB-2Claz8j9Uy7HnKCCRkKjqccg.JPEG.crabbyreview/HDD.jpg?type=w800) [이미지 출처](https://m.blog.naver.com/crabbyreview/221323837424)
 - 물리적 구조
   - 원형의 '금속판(디스크)'이 있다.
   - 금속판에는 트랙이라는 영역이 있다. 해당 영역은 LP판의 선 처럼 구분되어 있다.
