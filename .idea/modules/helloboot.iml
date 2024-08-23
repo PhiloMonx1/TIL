@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$/../../Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot" dumb="true">
+      <excludeFolder url="file://$MODULE_DIR$/../../Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/gradle/wrapper" />
+    </content>
+  </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="f9b38ffe-9245-4aa0-9eaf-0d968a7787da" />
+  </component>
+</module>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
