@@ -1,17 +1,9 @@
-package tobyspring_eh13.helloboot;
+## [섹션 III] 14_서블릿 요청 처리
 
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.boot.web.server.WebServer;
-import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
+---
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
+### 서블릿 요청 처리
+```java
 public class HellobootApplication {
     public static void main(String[] args) {
         ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
@@ -30,3 +22,9 @@ public class HellobootApplication {
         webServer.start();
     }
 }
+```
+- request.getParameter("name") : name 이라는 이름으로 파라미터를 받았다.
+- 물론 요청 헤더, 쿠키, 바디 등의 요청에 관련된 것을 모두 캐치할 수 있다. [참고](https://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html)
+
+### 서블릿 테스트
+![hello 서블릿 요청 핸들링 httpie](../../image/03_14_01.png)
