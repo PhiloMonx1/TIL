@@ -1,0 +1,52 @@
+/.idea/
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/8.8/checksums/checksums.lock
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/8.8/dependencies-accessors/gc.properties
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/8.8/executionHistory/executionHistory.bin
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/8.8/executionHistory/executionHistory.lock
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/8.8/fileChanges/last-build.bin
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/8.8/fileHashes/fileHashes.bin
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/8.8/fileHashes/fileHashes.lock
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/8.8/fileHashes/resourceHashesCache.bin
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/8.8/gc.properties
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/buildOutputCleanup/cache.properties
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/buildOutputCleanup/outputFiles.bin
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/vcs-1/gc.properties
+/Lecture/Inflearn/tobyilee/spring boot - principles and understanding/practice/섹션_2_스프링_부트_시작하기/helloboot/.gradle/file-system.probe
