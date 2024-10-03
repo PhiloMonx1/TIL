@@ -1,81 +1,58 @@
-## [섹션 VIII] 47_자동 구성에 Environment 프로퍼티 적용
+## [섹션 VIII] 48_@Value와 PropertySourcesPlaceholderConfigurer
 
-### Environment 프로퍼티 사용 테스트
-```java
-@MySpringBootApplication
-public class HellobootApplication {
-
-    @Bean
-    ApplicationRunner applicationRunner(Environment env ) {
-        return args -> {
-            String name = env.getProperty("my.name");
-            System.out.println("my.name: " + name);
-        };
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(HellobootApplication.class, args);
-    }
-}
-```
-
-#### 우선 순위 Level 1
-```properties
-my.name=ApplicationProperties
-```
-- `application.properties` 파일 혹은 `yml` 파일로 설정하는 방법
-
-#### 우선 순위 Level 2
-![환경 변수 설정 1](08_47_01.png)
-![환경 변수 설정 2](08_47_02.png)
-![환경 변수 설정 3](08_47_03.png)
-- 환경 변수로 설정하는 방법 level 1 보다 우선 순위가 높다.
-
-#### 우선 순위 Level 3
-![VM 옵션 추가 1](08_47_04.png)
-![VM 옵션 추가 2](08_47_05.png)
-- VM 옵션을 추가하는 방법 level 2 보다 우선 순위가 높다.
-
-가장 일반적으로 쓰이는 방법은 '우선 순위 Level 1' 방법인 `application.properties` 파일 혹은 `yml` 파일로 설정하는 방법이다.
-
-### 자동 구성에 Environment 프로퍼티 적용 실전
+### 클래스 필드로 Property 사용하기
 ```java
 @MyAutoConfiguration
 @ConditionalMyOnClass("org.apache.catalina.startup.Tomcat")
 public class TomcatWebServerConfig {
+    @Value("${contextPath}")
+    String contextPath;
+
     @Bean("TomcatWebServerConfig")
     @ConditionalOnMissingBean
-    public ServletWebServerFactory servletWebServerFactory(Environment env) {
+    public ServletWebServerFactory servletWebServerFactory() {
         TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
-        factory.setContextPath(env.getProperty("contextPath"));
+        factory.setContextPath(this.contextPath);
         return factory;
     }
 }
 ```
-- `setContextPath()` : 웹 서버의 컨텍스트 경로를 설정한다.
-  - 애플리케이션의 모든 URL이 설정한 컨텍스트 경로로 시작된다.
-
-```properties
-contextPath=/app
-```
+- 기존 `Environment`를 파라미터로 받지 않고 `contextPath` 필드를 추가해서 처리해보았다.
+  - `@Value` : 스프링 빈의 필드나 메서드 파라미터에 주입하는 데 사용되는 어노테이션이다. (`${...}` 문법은 'Property Placeholder' 를 나타낸다.)
 
 ```
-o.a.c.c.C.[Tomcat].[localhost].[/app]    : Initializing Spring embedded WebApplicationContext
-w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 146 ms
-o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/app'
-t.helloboot.HellobootApplication         : Started HellobootApplication in 0.317 seconds (JVM running for 0.565)
+Caused by: java.lang.IllegalArgumentException: ContextPath must start with '/' and not end with '/'
+	at org.springframework.boot.web.servlet.server.AbstractServletWebServerFactory.checkContextPath(AbstractServletWebServerFactory.java:140) ~[spring-boot-2.7.6.jar:2.7.6]
+	at org.springframework.boot.web.servlet.server.AbstractServletWebServerFactory.setContextPath(AbstractServletWebServerFactory.java:129) ~[spring-boot-2.7.6.jar:2.7.6]
+	at tobyspring_eh13.config.autoconfig.TomcatWebServerConfig.servletWebServerFactory(TomcatWebServerConfig.java:22) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154) ~[spring-beans-5.3.24.jar:5.3.24]
+	... 21 common frames omitted
 ```
-- "Tomcat started on port(s): 8080 (http) with context path '/app'" 라인을 볼 수 있다.
+그러나 실제로는 이렇게 설정해도 에러가 발생한다. "ContextPath must start with '/' and not end with '/'" 'ContextPath' 는 '/' 으로 시작해야 한다고 하고 있다.
+
+sout 을 통해 `contextPath` 필드를 콘솔에 출력해보면 `${contextPath}` 라는 문자열이 그대로 들어오는 것을 확인할 수 있다.
+
+사실 'Property Placeholder' 를 사용하기 위해서 스프링 부트가 수행하는 설정이 있다.
+
+### PropertySourcesPlaceholderConfigurer
+```java
+@MyAutoConfiguration
+public class PropertyPlaceholderConfig {
+    @Bean
+    PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+}
+```
+- 자동 설정으로 `PropertySourcesPlaceholderConfigurer` 타입의 Bean 을 리턴하는 `PropertyPlaceholderConfig` 클래스를 등록했다.
 
 ```
-apple2@chusang-uiguchehwa2ui-MacBookAir TIL % http "localhost:8080/app/hello?name=Spring"                                                           
-HTTP/1.1 200 
-Connection: keep-alive
-Content-Length: 14
-Content-Type: text/plain;charset=ISO-8859-1
-Date: Tue, 01 Oct 2024 15:53:14 GMT
-Keep-Alive: timeout=60
-
-*Hello Spring*
+tobyspring_eh13.config.autoconfig.PropertyPlaceholderConfig
 ```
-- "localhost:8080/app/hello?name=Spring"으로 요청을 보내야 요청이 성공적으로 응답된다.
+- import 파일에도 자동 설정 클래스를 불러올 수 있도록 넣어주었다.
+
+이제 정상적으로 서버가 동작하는 것을 확인할 수 있다.

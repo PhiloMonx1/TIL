@@ -1,3 +1,4 @@
 tobyspring_eh13.config.autoconfig.DispatcherServletConfig
 tobyspring_eh13.config.autoconfig.TomcatWebServerConfig
 tobyspring_eh13.config.autoconfig.JettyWebServerConfig
+tobyspring_eh13.config.autoconfig.PropertyPlaceholderConfig
