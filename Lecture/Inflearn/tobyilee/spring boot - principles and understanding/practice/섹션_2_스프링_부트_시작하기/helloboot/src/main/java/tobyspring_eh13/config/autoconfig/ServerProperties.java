@@ -1,5 +1,8 @@
 package tobyspring_eh13.config.autoconfig;
 
+import tobyspring_eh13.config.MyConfigurationProperties;
+
+@MyConfigurationProperties(prefix = "server")
 public class ServerProperties {
     private String contextPath;
 

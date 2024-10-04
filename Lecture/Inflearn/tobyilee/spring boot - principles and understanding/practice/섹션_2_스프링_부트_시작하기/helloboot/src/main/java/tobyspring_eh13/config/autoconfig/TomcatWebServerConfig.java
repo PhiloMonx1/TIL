@@ -9,6 +9,7 @@ import tobyspring_eh13.config.MyAutoConfiguration;
 
 @MyAutoConfiguration
 @ConditionalMyOnClass("org.apache.catalina.startup.Tomcat")
+@EnableMyConfigurationProperties(ServerProperties.class)
 public class TomcatWebServerConfig {
     @Bean("TomcatWebServerConfig")
     @ConditionalOnMissingBean
